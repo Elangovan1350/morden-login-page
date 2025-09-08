@@ -33,6 +33,14 @@ const App = () => {
         });
       },
     });
+    gsap.to(".login2", {
+      xPercent: -100,
+      opacity: 0,
+    });
+    gsap.to(".login1", {
+      xPercent: 0,
+      opacity: 1,
+    });
   });
   const rightToLeft = contextSafe(() => {
     console.log("right");
@@ -57,19 +65,95 @@ const App = () => {
         gsap.set("#text2", { xPercent: 0 });
       },
     });
+    gsap.to(".login2", {
+      xPercent: 0,
+      opacity: 1,
+    });
+    gsap.to(".login1", {
+      xPercent: 100,
+      opacity: 0,
+    });
   });
 
   return (
     <div className="h-screen 2xl:container mx-auto bg-fuchsia-100/45">
-      <div className="w-4/5 h-full mx-auto flex justify-center items-center">
+      <div className="w-11/12 h-full mx-auto flex justify-center items-center">
         <div className="bg-white  overflow-hidden w-[768px] h-[480px] relative rounded-4xl shadow-2xl shadow-gray-400">
-          <div className="grid grid-cols-2">
-            <div>eloo</div>
-            <div>eqqq</div>
+          <div className="flex h-full">
+            <div className="w-1/2 flex p-4 items-center justify-center  overflow-x-hidden">
+              <div className="login1 flex   justify-center items-center w-full  ">
+                <div className="flex flex-col justify-center items-center w-4/5  gap-3">
+                  <h1 className="font-bold text-[32px]">Sign In</h1>
+                  <div className="flex gap-2.5 flex-wrap">
+                    <i className="fa-brands fa-google border p-2.5 rounded-lg"></i>
+                    <i className="fa-brands fa-facebook border p-2.5 rounded-lg"></i>
+                    <i className="fa-brands fa-github border p-2.5 rounded-lg"></i>
+                    <i className="fa-brands fa-linkedin border p-2.5 rounded-lg"></i>
+                  </div>
+                  <p className="text-xs">or use your email and password</p>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    className="outline-none bg-gray-300/30 p-2 w-full rounded-lg"
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    className="outline-none bg-gray-300/30 p-2 w-full rounded-lg"
+                  />
+                  <p className="text-sm text-[#333]">Forget Your Password?</p>
+                  <button className="py-2.5 px-8 bg-[#F11515] rounded-lg text-white text-xs font-semibold">
+                    SIGN IN
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="w-1/2 flex p-4 items-center justify-center  overflow-x-hidden">
+              <div className="login2 flex w-full justify-center items-center ">
+                <div className="flex flex-col justify-center items-center w-4/5  gap-3">
+                  <h1 className="font-bold text-[32px]">Create Account</h1>
+                  <div className="flex gap-2.5 flex-wrap">
+                    <i className="fa-brands fa-google border p-2.5 rounded-lg"></i>
+                    <i className="fa-brands fa-facebook border p-2.5 rounded-lg"></i>
+                    <i className="fa-brands fa-github border p-2.5 rounded-lg"></i>
+                    <i className="fa-brands fa-linkedin border p-2.5 rounded-lg"></i>
+                  </div>
+                  <p className="text-xs">or use your email for registeration</p>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    className="outline-none bg-gray-300/30 p-2 w-full rounded-lg"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    id="email1"
+                    placeholder="Email"
+                    className="outline-none bg-gray-300/30 p-2 w-full rounded-lg"
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    id="password1"
+                    placeholder="Password"
+                    className="outline-none bg-gray-300/30 p-2 w-full rounded-lg"
+                  />
+                  <button className="py-2.5 px-8 bg-[#F11515] rounded-lg text-white text-xs font-semibold">
+                    SIGN UP
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             ref={containShiftRef}
-            className="w-[50%] top-0  left-[0%] z-[1000] absolute overflow-hidden block  rounded-4xl text-white    bg-red-600 h-full rounded-r-[35%]"
+            className="w-[50%] top-0  left-[0%] z-[1000] absolute overflow-hidden block  rounded-4xl text-white    bg-[#F11515] h-full rounded-r-[35%]"
           >
             <div
               id="text0"
