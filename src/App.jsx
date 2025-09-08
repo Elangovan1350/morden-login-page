@@ -37,10 +37,17 @@ const App = () => {
       xPercent: -100,
       opacity: 0,
     });
-    gsap.to(".login1", {
-      xPercent: 0,
-      opacity: 1,
-    });
+    gsap.fromTo(
+      ".login1",
+      {
+        xPercent: 100,
+        opacity: 0,
+      },
+      {
+        xPercent: 0,
+        opacity: 1,
+      }
+    );
   });
   const rightToLeft = contextSafe(() => {
     console.log("right");
