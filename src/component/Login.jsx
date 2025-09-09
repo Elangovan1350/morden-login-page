@@ -3,14 +3,14 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyALGNUAbzYoBtdr2BEOBKLGDziHSXXHyVQ",
+  apiKey: import.meta.env.vite_APP_API_KEY,
   authDomain: "morden-login-page.firebaseapp.com",
   databaseURL:
     "https://morden-login-page-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "morden-login-page",
   storageBucket: "morden-login-page.firebasestorage.app",
   messagingSenderId: "440944838296",
-  appId: "1:440944838296:web:602a7916bfc1cd8a0bf2ed",
+  appId: import.meta.env.VITE_APP_APPID,
 };
 
 const database = initializeApp(firebaseConfig);
@@ -30,16 +30,21 @@ const Login = () => {
     console.log(email, password);
     const isValid = advanceValidation(email, password);
     if (isValid) {
-      saveData(email, password);
-      console.log("data is saved in firebase");
-      messageRef3.current.textContent = "Data is saved in firebase";
+      try {
+        saveData(email, password);
+        console.log("data is saved in firebase");
+        messageRef3.current.textContent = "Data is saved in firebase";
+      } catch (error) {
+        messageRef3.current.textContent = "Error in adding data in firebase";
+        console.error(error);
+      }
     } else {
       console.log("data is not saved in firebase");
-      messageRef3.current.textContent = "Data is not saved in firebase";
+      messageRef3.current.textContent = "Given data is not valid";
     }
   };
-  const saveData = (email, password) => {
-    push(ref(db, "userDatas"), {
+  const saveData = async (email, password) => {
+    await push(ref(db, "login"), {
       email,
       password,
     });
