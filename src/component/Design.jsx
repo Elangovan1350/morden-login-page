@@ -1,6 +1,84 @@
 import React from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
-const Design = ({ leftToRight, rightToLeft }) => {
+const Design = ({ containShiftRef }) => {
+  const { contextSafe } = useGSAP();
+
+  const leftToRight = contextSafe(() => {
+    console.log("left");
+
+    gsap.to(
+      containShiftRef.current,
+
+      {
+        x: "100%",
+        borderRadius: "35% 32px 32px 35%",
+      }
+    );
+    gsap.to("#text0", {
+      xPercent: -50,
+    });
+    gsap.from("#text2", {
+      xPercent: 100,
+    });
+    gsap.to("#text1", {
+      xPercent: -100,
+      onComplete: () => {
+        gsap.set("#text1", {
+          xPercent: 0,
+        });
+      },
+    });
+    gsap.to(".login2", {
+      xPercent: -100,
+      opacity: 0,
+    });
+    gsap.fromTo(
+      ".login1",
+      {
+        xPercent: 100,
+        opacity: 0,
+      },
+      {
+        xPercent: 0,
+        opacity: 1,
+      }
+    );
+  });
+  const rightToLeft = contextSafe(() => {
+    console.log("right");
+
+    gsap.to(
+      containShiftRef.current,
+
+      {
+        x: "0%",
+        borderRadius: "32px 35% 35% 32px",
+      }
+    );
+    gsap.to("#text0", {
+      xPercent: 0,
+    });
+    gsap.from("#text1", {
+      xPercent: -100,
+    });
+    gsap.to("#text2", {
+      xPercent: 100,
+      onComplete: () => {
+        gsap.set("#text2", { xPercent: 0 });
+      },
+    });
+    gsap.to(".login2", {
+      xPercent: 0,
+      opacity: 1,
+    });
+    gsap.to(".login1", {
+      xPercent: 100,
+      opacity: 0,
+    });
+  });
+
   return (
     <>
       <div id="text0" className="relative block   left-[0%] w-[200%] h-full">
